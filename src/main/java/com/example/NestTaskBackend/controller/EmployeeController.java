@@ -46,7 +46,7 @@ public class EmployeeController {
         return map;
     }
 
-    @CrossOrigin(origins="*")
+    @CrossOrigin(origins ="*")
     @PostMapping(path="/viewMyProfile",produces = "application/json",consumes = "application/json")
     List<EmployeeModel> myProfile(@RequestBody EmployeeModel e){
         List<EmployeeModel> profile= (List<EmployeeModel>) edao.myProfile(e.getId());
@@ -74,6 +74,15 @@ public class EmployeeController {
             System.out.println("not found");
         }
         return search;
+    }
+
+    @CrossOrigin(origins="*")
+    @PostMapping(path = "/deleteEmployee",consumes = "application/json",produces = "application/json")
+    public HashMap<String,String> deleteEmployee(@RequestBody EmployeeModel em){
+        HashMap<String,String> map=new HashMap<>();
+        edao.deleteEmployee(em.getId());
+        map.put("status","success");
+        return map;
     }
 
 

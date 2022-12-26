@@ -1,6 +1,8 @@
 package com.example.NestTaskBackend.dao;
 
 import com.example.NestTaskBackend.model.EmployeeModel;
+import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -17,4 +19,9 @@ public interface EmployeeDao extends CrudRepository<EmployeeModel,Integer> {
 
     @Query(value = "SELECT `id`, `designation`, `emp_code`, `emp_email`, `emp_name`, `emp_phone`, `emp_salary`, `password`, `username` FROM `employee` WHERE `emp_name` LIKE %:name% ",nativeQuery = true)
     List<EmployeeModel> search(@Param("name")String name);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM `employee` WHERE `id`=:empId",nativeQuery = true)
+    void deleteEmployee(@Param("empId")Integer empId);
 }
