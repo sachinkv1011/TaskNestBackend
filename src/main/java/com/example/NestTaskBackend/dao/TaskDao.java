@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TaskDao extends CrudRepository<TaskModel ,Integer> {
 
@@ -22,4 +23,7 @@ public interface TaskDao extends CrudRepository<TaskModel ,Integer> {
 
     @Query(value = "SELECT `emp_name` FROM `employee` WHERE `emp_code`=:empId",nativeQuery = true)
    String addTaskCheck(@Param("empId")Integer empId);
+
+    @Query(value = "SELECT t.id, t.`assign_date`,t.`task_title`,t.`task_due_date`,t.`remarks`,t.`status`,t.emp_id,e.emp_name FROM `task` t JOIN employee e ON t.emp_id=e.emp_code",nativeQuery = true)
+    List<Map<String,String>> viewAllTask();
 }

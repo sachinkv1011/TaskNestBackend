@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class TaskController {
@@ -47,9 +48,10 @@ public class TaskController {
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/viewAllTask")
-    public List<TaskModel> viewAllTask(){
-        List<TaskModel> task=(List<TaskModel>) tdao.findAll();
-        return task;
+    public List<Map<String,String>> viewAllTask(){
+        return (List<Map<String,String>>) tdao.viewAllTask();
+
+
 
     }
 
