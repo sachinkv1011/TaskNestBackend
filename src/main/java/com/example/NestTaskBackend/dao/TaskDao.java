@@ -13,8 +13,8 @@ import java.util.Map;
 
 public interface TaskDao extends CrudRepository<TaskModel ,Integer> {
 
-    @Query(value = "SELECT `id`,`emp_id`, `assign_date`, `remarks`, `status`, `task_due_date`, `task_title` FROM `task` WHERE `emp_id`=:empCode",nativeQuery = true)
-    List<TaskModel> viewMyTask(@Param("empCode")Integer empCode);
+    @Query(value = "SELECT `id`,`emp_id`, `assign_date`, `remarks`, `status`, `task_due_date`, `task_title` FROM `task` WHERE `emp_id`=:empId",nativeQuery = true)
+    List<TaskModel> viewMyTask(@Param("empId")Integer empId);
 
     @Transactional
     @Modifying

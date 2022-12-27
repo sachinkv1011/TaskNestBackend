@@ -42,6 +42,7 @@ public class EmployeeController {
             int userId=result.get(0).getId();
             map.put("status","success");
             map.put("userId",String.valueOf(userId));
+            map.put("userCode",String.valueOf(result.get(0).getEmpCode()));
         }
         return map;
     }
